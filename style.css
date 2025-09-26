@@ -26,7 +26,7 @@ h1 {
 
 #counts > div {
   display: inline-block;
-  margin: 0 5em;
+  margin: 0 2em;
 }
 
 div.count-value {
