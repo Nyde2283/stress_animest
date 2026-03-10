@@ -1,5 +1,5 @@
 let start = 1756706400;
-let deadline = 1780329600;
+let deadline = 1780416000;
 
 function update() {
     let now = Date.now() / 1000;
