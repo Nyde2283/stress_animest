@@ -15,6 +15,10 @@ function update() {
     document.getElementById("hours-value").innerHTML = hours;
     document.getElementById("minutes-value").innerHTML = minutes;
     document.getElementById("seconds-value").innerHTML = seconds;
+
+    if (delta <= 0.0) {
+        document.documentElement.style["background"] = "#bf0101";
+    }
 }
 
 function updatePercentage() {
