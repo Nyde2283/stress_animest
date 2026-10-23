@@ -5,15 +5,14 @@
     <meta name="darkreader-lock">
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Stress Parcoursup" />
-    <meta property="og:description" content="Temps avant les résultats Parcoursup" />
+    <meta property="og:title" content="Stress Anim'Est" />
+    <meta property="og:description" content="Temps avant l'ouverture d'Anim'Est" />
 
-    <title>Stress Parcoursup</title>
-    <link rel="stylesheet" href="/style.css">
+    <title>Stress Anim'Est</title>
   </head>
   <body>
     <main>
-      <h1>TEMPS AVANT LES RÉSULTATS PARCOURSUP</h1>
+      <h1>TEMPS AVANT L'OUVERTURE D'ANIM'EST</h1>
 
       <div id="counts">
         <div>
@@ -34,29 +33,78 @@
         </div>
       </div>
 
-      <div id="percentage-box">
-        POURCENTAGE DE L'ANNÉE :
-        <span id="percentage-value">
-          69.4242424 %
-        </span>
-      </div>
+      <script>
+        let deadline = 1794645000;
 
-      <script src="/countdown.js"></script>
-      <!-- Cloudflare Web Analytics -->
-      <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "eacc427b8371478e9b6562b9351bdf20"}'></script>
-      <!-- End Cloudflare Web Analytics -->
+        function update() {
+          let now = Date.now() / 1000;
+          let delta = deadline - now;
 
-      <br>
+          let days = Math.trunc(delta / (3600 * 24));
+          let hours = Math.trunc((delta % (3600*24)) / 3600);
+          let minutes = Math.trunc((delta % 3600) / 60);
+          let seconds = Math.trunc(delta % 60);
 
-      <div id="about-box">
-        <a href="https://entrainement.parcoursup.fr">Stressez toujours plus en vous entraînant à choisir vos voeux !</a>
-        <br>
-        Le site est codé avec les pieds, il va probablement bugger à un moment.
-        <br>
-        Si c'est le cas, envoyez-moi un MP sur Discord : <code>zowepsilon</code>.
-        <br>
-        Inspiré du légendaire <a href="https://stress-prepa.fr/">stress-prepa.fr</a>.
-      </div>
+          document.getElementById("days-value").innerHTML = days;
+          document.getElementById("hours-value").innerHTML = hours;
+          document.getElementById("minutes-value").innerHTML = minutes;
+          document.getElementById("seconds-value").innerHTML = seconds;
+
+          if (delta <= 0.0) {
+            document.documentElement.style["background"] = "#bf0101";
+          }
+        }
+
+        update();
+
+        setInterval(update, 1000);
+      </script>
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+        html {
+          font-family: "Nunito", sans-serif;
+          background: #ebae3d;
+          color: #15141A;
+          height: 100%;
+        }
+
+        body {
+          display: flex;
+          margin: 0;
+          padding-left: 2em;
+          padding-right: 2em;
+          text-align: center;
+          height: 100%;
+        }
+
+        main {
+          margin: auto;
+        }
+
+        h1 {
+          font-size: 30pt;
+          text-align: center;
+        }
+
+        #counts > div {
+          display: inline-block;
+          margin: 0 2em 2em 2em;
+        }
+
+        div.count-value {
+          font-size: 60pt;
+        }
+
+        div.count-label {
+          font-size: 24pt;
+        }
+
+        code {
+          font-size: 0.9em;
+        }
+      </style>
+
       <br>
       <br>
       <br>
