@@ -12,46 +12,55 @@
   </head>
   <body>
     <main>
-      <h1>TEMPS AVANT L'OUVERTURE <a href="https://animest.net/">D'ANIM'EST</a></h1>
+      <h1>TEMPS (approximatif) AVANT L'OUVERTURE <a href="https://animest.net/">D'ANIM'EST</a></h1>
 
       <div id="counts">
         <div>
-          <div class="count-value" id="days-value">69</div>
-          <div class="count-label">JOURS</div>
+          <div class="count-value" id="months-value">67</div>
+          <div class="count-label">MOIS</div>
         </div>
-        <div>
-          <div class="count-value" id="hours-value">69</div>
-          <div class="count-label">HEURES</div>
-        </div>
-        <div>
-          <div class="count-value" id="minutes-value">69</div>
-          <div class="count-label">MINUTES</div>
-        </div>
-        <div>
-          <div class="count-value" id="seconds-value">69</div>
-          <div class="count-label">SECONDES</div>
-        </div>
+<!--        <div>-->
+<!--          <div class="count-value" id="days-value">67</div>  &lt;!&ndash;C'est plus dans l'air du temps&ndash;&gt;-->
+<!--          <div class="count-label">JOURS</div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <div class="count-value" id="hours-value">67</div>-->
+<!--          <div class="count-label">HEURES</div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <div class="count-value" id="minutes-value">67</div>-->
+<!--          <div class="count-label">MINUTES</div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <div class="count-value" id="seconds-value">67</div>-->
+<!--          <div class="count-label">SECONDES</div>-->
+<!--        </div>-->
       </div>
 
       <script>
-        let deadline = 1794643200;
+        let deadline = new Date(2027, 10, 15); // milieu de novembre 2027, pas la date officielle...
+        // fun fact : les mois sont indicés à 0, janvier = 0, novembre = 10
 
         function update() {
-          let now = Date.now() / 1000;
-          let delta = deadline - now;
+          let now = new Date();
+          let delta = (deadline - now) / 1000;
 
-          let days = Math.trunc(delta / (3600 * 24));
-          let hours = Math.trunc((delta % (3600*24)) / 3600);
-          let minutes = Math.trunc((delta % 3600) / 60);
-          let seconds = Math.trunc(delta % 60);
+          let months = (deadline.getFullYear() - now.getFullYear()) * 12 + deadline.getMonth() - now.getMonth();
+          // let days = Math.trunc(delta / (3600 * 24));
+          // let hours = Math.trunc((delta % (3600*24)) / 3600);
+          // let minutes = Math.trunc((delta % 3600) / 60);
+          // let seconds = Math.trunc(delta % 60);
 
-          document.getElementById("days-value").innerHTML = days;
-          document.getElementById("hours-value").innerHTML = hours;
-          document.getElementById("minutes-value").innerHTML = minutes;
-          document.getElementById("seconds-value").innerHTML = seconds;
+          document.getElementById("months-value").innerHTML = months;
+          // document.getElementById("days-value").innerHTML = days;
+          // document.getElementById("hours-value").innerHTML = hours;
+          // document.getElementById("minutes-value").innerHTML = minutes;
+          // document.getElementById("seconds-value").innerHTML = seconds;
 
-          if (delta <= 0.0) {
-            document.documentElement.style["background"] = "#bf0101";
+          if (delta >= 24 * 3600 * 30 * 10) { // 10 mois avant la convention
+            document.documentElement.style["background"] = "#6abf02"; // c'est du vert
+          } else if (delta <= 0.0) {
+            document.documentElement.style["background"] = "#bf0101"; // c'est du rouge
           }
         }
 
@@ -64,7 +73,7 @@
 
         html {
           font-family: "Nunito", sans-serif;
-          background: #ebae3d;
+          background: #ebae3d; /* c'est du jaune-orange */
           color: #15141A;
           height: 100%;
         }
